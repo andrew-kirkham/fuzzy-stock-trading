@@ -1,0 +1,51 @@
+FUNCTION_BLOCK StockFIS
+
+VAR_INPUT
+	EarningsPerShare : REAL;
+	ExpertOpinion : REAL;
+	PricePerEarnings : REAL;
+END_VAR
+
+VAR_OUTPUT
+	Recommendation : REAL;
+END_VAR
+
+FUZZIFY EarningsPerShare
+	TERM small := (0,1)(10,0);
+	TERM big := (10,0)(20,1);
+END_FUZZIFY
+
+FUZZIFY ExpertOpinion
+	TERM high := (0, 1) (2.5,0);
+	TERM low := (2.5,0) (5,1);
+END_FUZZIFY 
+
+FUZZIFY PricePerEarnings
+	TERM low := (0,1) (10,0);
+	TERM fair := (10,0) (13.5,1)(17,0);
+	TERM high := (17,0)(21,1)(25,0);
+	TERM very_high := (25,0)(35,1);
+END_FUZZIFY
+
+DEFUZZIFY Recommendation
+	TERM strong_sell := (0,1) (2.5,0);
+	TERM sell := (0,0)(2.5,1)(5,0);
+	TERM hold := (2.5,0)(5,1)(7.5,0);
+	TERM buy := (5,0)(7.5,1)(10,0);
+	TERM strong_buy := (7.5,0)(10,1);
+	METHOD : COG;
+	DEFAULT := 5;
+END_DEFUZZIFY
+
+RULEBLOCK rules
+	AND : MIN;
+	ACT : MIN;
+	ACCU : MAX;
+	
+	RULE 1 : IF EarningsPerShare IS small AND ExpertOpinion IS high AND PricePerEarnings IS low
+				THEN Recommendation IS strong_sell;
+	RULE 2 : IF EarningsPerShare IS big AND ExpertOpinion IS low AND PricePerEarnings IS very_high
+				THEN Recommendation IS strong_buy;
+				
+END_RULEBLOCK
+END_FUNCTION_BLOCK

@@ -11,7 +11,7 @@ public class StockSymbol {
         Object[] options1 = { "Okay", "Cancel" };
         String symbolEntered = "";
         JPanel panel = new JPanel();
-        panel.add(new JLabel("Enter valid stock symbol (ie: GOOG or APPL)"));
+        panel.add(new JLabel("Enter valid stock symbol (ie: GOOG or YHOO)"));
         JTextField textField = new JTextField(10);
         panel.add(textField);
 
@@ -20,7 +20,6 @@ public class StockSymbol {
                 null, options1, null);
         if (result == JOptionPane.YES_OPTION){
         	symbolEntered = textField.getText();
-//            JOptionPane.showMessageDialog(null, "Retrieving stock data for symbol: " + symbolEntered);
         }
         return symbolEntered;
     }

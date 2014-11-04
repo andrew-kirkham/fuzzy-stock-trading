@@ -43,20 +43,20 @@ RULEBLOCK rules
 	ACCU : MAX;
 	
 	RULE 1: IF ExpertOpinion IS high AND EarningsPerShare IS small AND PricePerEarnings IS low THEN Recommendation IS strong_sell; 
-	RULE 2: IF ExpertOpinion IS high AND EarningsPerShare IS small AND PricePerEarnings IS fair THEN Recommendation IS 
-	RULE 3: IF ExpertOpinion IS high AND EarningsPerShare IS small AND PricePerEarnings IS high THEN Recommendation IS 
-	RULE 4: IF ExpertOpinion IS high AND EarningsPerShare IS small AND PricePerEarnings IS very_high THEN Recommendation IS 
-	RULE 5: IF ExpertOpinion IS low AND EarningsPerShare IS small AND PricePerEarnings IS low THEN Recommendation IS 
-	RULE 6: IF ExpertOpinion IS low AND EarningsPerShare IS small AND PricePerEarnings IS fair THEN Recommendation IS 
-	RULE 7: IF ExpertOpinion IS low AND EarningsPerShare IS small AND PricePerEarnings IS high THEN Recommendation IS 
-	RULE 8: IF ExpertOpinion IS low AND EarningsPerShare IS small AND PricePerEarnings IS very_high THEN Recommendation IS 
+	RULE 2: IF ExpertOpinion IS high AND EarningsPerShare IS small AND PricePerEarnings IS fair THEN Recommendation IS strong_sell;
+	RULE 3: IF ExpertOpinion IS high AND EarningsPerShare IS small AND PricePerEarnings IS high THEN Recommendation IS sell;
+	RULE 4: IF ExpertOpinion IS high AND EarningsPerShare IS small AND PricePerEarnings IS very_high THEN Recommendation IS sell;
+	RULE 5: IF ExpertOpinion IS low AND EarningsPerShare IS small AND PricePerEarnings IS low THEN Recommendation IS strong_sell;
+	RULE 6: IF ExpertOpinion IS low AND EarningsPerShare IS small AND PricePerEarnings IS fair THEN Recommendation IS sell;
+	RULE 7: IF ExpertOpinion IS low AND EarningsPerShare IS small AND PricePerEarnings IS high THEN Recommendation IS hold;
+	RULE 8: IF ExpertOpinion IS low AND EarningsPerShare IS small AND PricePerEarnings IS very_high THEN Recommendation IS hold; 
 	RULE 9: IF ExpertOpinion IS high AND EarningsPerShare IS big AND PricePerEarnings IS low THEN Recommendation IS hold; 
-	RULE 10: IF ExpertOpinion IS high AND EarningsPerShare IS big AND PricePerEarnings IS fair THEN Recommendation IS 
-	RULE 11: IF ExpertOpinion IS high AND EarningsPerShare IS big AND PricePerEarnings IS high THEN Recommendation IS 
-	RULE 12: IF ExpertOpinion IS high AND EarningsPerShare IS big AND PricePerEarnings IS very_high THEN Recommendation IS 
-	RULE 13: IF ExpertOpinion IS low AND EarningsPerShare IS big AND PricePerEarnings IS low THEN Recommendation IS 
-	RULE 14: IF ExpertOpinion IS low AND EarningsPerShare IS big AND PricePerEarnings IS fair THEN Recommendation IS 
-	RULE 15: IF ExpertOpinion IS low AND EarningsPerShare IS big AND PricePerEarnings IS high THEN Recommendation IS 
+	RULE 10: IF ExpertOpinion IS high AND EarningsPerShare IS big AND PricePerEarnings IS fair THEN Recommendation IS hold;
+	RULE 11: IF ExpertOpinion IS high AND EarningsPerShare IS big AND PricePerEarnings IS high THEN Recommendation IS buy;
+	RULE 12: IF ExpertOpinion IS high AND EarningsPerShare IS big AND PricePerEarnings IS very_high THEN Recommendation IS strong_buy; 
+	RULE 13: IF ExpertOpinion IS low AND EarningsPerShare IS big AND PricePerEarnings IS low THEN Recommendation IS buy;
+	RULE 14: IF ExpertOpinion IS low AND EarningsPerShare IS big AND PricePerEarnings IS fair THEN Recommendation IS buy;
+	RULE 15: IF ExpertOpinion IS low AND EarningsPerShare IS big AND PricePerEarnings IS high THEN Recommendation IS strong_buy;
 	RULE 16: IF ExpertOpinion IS low AND EarningsPerShare IS big AND PricePerEarnings IS very_high THEN Recommendation IS strong_buy; 
 				
 END_RULEBLOCK

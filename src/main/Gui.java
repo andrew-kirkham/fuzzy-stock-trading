@@ -60,8 +60,8 @@ public class Gui {
 		JButton btnStockSymbol = new JButton("Go");
 		btnStockSymbol.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String quoteInput = fieldStockSymbol.getText();
-				if (quoteInput.trim().length() <= 0) return;
+				String quoteInput = fieldStockSymbol.getText().trim();
+				if (quoteInput.length() <= 0) return;
 				try{
 					Stock s = StockFetcher.getStock(quoteInput);
 					
@@ -131,8 +131,9 @@ public class Gui {
 		btnExpertOpinion.setBounds(104, 161, 89, 23);
 		frame.getContentPane().add(btnExpertOpinion);
 	}
+	
 	public void setTextArea(Stock s){
-		textArea.append("Stock Symbol: " + s.getSymbol());
+		textArea.setText("Stock Symbol: " + s.getSymbol());
 		textArea.append("\nCurrent Price: " + s.getPrice());
 		textArea.append("\nDay High: " + s.getDayhigh());
 		textArea.append("\nDay Low: " + s.getDaylow());

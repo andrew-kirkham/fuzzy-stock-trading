@@ -55,7 +55,7 @@ public class Gui {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 498, 392);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -95,11 +95,11 @@ public class Gui {
 		
 		JLabel labelExpertOpinion = new JLabel("Override Expert Opinion");
 		labelExpertOpinion.setFont(new Font("Tahoma", Font.BOLD, 12));
-		labelExpertOpinion.setBounds(10, 206, 183, 14);
+		labelExpertOpinion.setBounds(10, 304, 183, 14);
 		frame.getContentPane().add(labelExpertOpinion);
 		
 		fieldExpertOpinion = new JTextField();
-		fieldExpertOpinion.setBounds(10, 231, 86, 20);
+		fieldExpertOpinion.setBounds(10, 329, 86, 20);
 		frame.getContentPane().add(fieldExpertOpinion);
 		fieldExpertOpinion.setColumns(10);
 		
@@ -117,7 +117,7 @@ public class Gui {
 		frame.getContentPane().add(btnShowCharts);
 		
 		textArea = new JTextArea();
-		textArea.setBounds(259, 20, 165, 231);
+		textArea.setBounds(229, 20, 243, 329);
 		textArea.setEditable(false);
 		frame.getContentPane().add(textArea);
 		
@@ -139,37 +139,37 @@ public class Gui {
 				}
 			}
 		});
-		btnExpertOpinion.setBounds(104, 230, 89, 23);
+		btnExpertOpinion.setBounds(104, 328, 89, 23);
 		frame.getContentPane().add(btnExpertOpinion);
 		
 		JLabel lblRecommendation = new JLabel("Recommendation");
 		lblRecommendation.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblRecommendation.setBounds(10, 123, 119, 14);
+		lblRecommendation.setBounds(10, 133, 119, 14);
 		frame.getContentPane().add(lblRecommendation);
 		
 		labelStrongBuy = new JLabel("Strong Buy");
-		labelStrongBuy.setBounds(10, 141, 86, 14);
+		labelStrongBuy.setBounds(10, 169, 183, 14);
 		frame.getContentPane().add(labelStrongBuy);
 		
 		labelBuy = new JLabel("Buy");
-		labelBuy.setBounds(10, 164, 46, 14);
+		labelBuy.setBounds(10, 194, 183, 14);
 		frame.getContentPane().add(labelBuy);
 		
 		labelStrongSell = new JLabel("Strong Sell");
-		labelStrongSell.setBounds(104, 141, 85, 14);
+		labelStrongSell.setBounds(10, 269, 183, 14);
 		frame.getContentPane().add(labelStrongSell);
 		
 		labelSell = new JLabel("Sell");
-		labelSell.setBounds(104, 164, 46, 14);
+		labelSell.setBounds(10, 244, 183, 14);
 		frame.getContentPane().add(labelSell);
 		
 		labelHold = new JLabel("Hold");
-		labelHold.setBounds(188, 141, 46, 14);
+		labelHold.setBounds(10, 219, 183, 14);
 		frame.getContentPane().add(labelHold);
 	}
 	
 	public void setTextArea(Stock s){
-		textArea.append("Name: " + s.getName());
+		textArea.setText("Name: " + s.getName());
 		textArea.append("\nStock Symbol: " + s.getSymbol());
 		textArea.append("\nCurrent Price: " + s.getPrice());
 		textArea.append("\nDay High: " + s.getDayhigh());
@@ -179,13 +179,14 @@ public class Gui {
 		textArea.append("\n50 Day Moving Avg: " + s.getMovingav50day());
 		textArea.append("\n\nPrice per Earnings: " + s.getPe());
 		textArea.append("\nEarnings per Share: " + s.getEps());
+		textArea.append("\n\nExpert Opinion: " +s.getEOPEG());
 	}
 	
 	public void setRecommendationArea(){
-		labelStrongBuy.setText("Strong Buy: " + Fuzzy.fis.getVariable("Recommendation").getMembership("strong_buy"));
-		labelBuy.setText("Buy: " + Fuzzy.fis.getVariable("Recommendation").getMembership("buy"));
-		labelStrongSell.setText("Strong Sell: " + Fuzzy.fis.getVariable("Recommendation").getMembership("strong_sell"));
-		labelSell.setText("Sell: " + Fuzzy.fis.getVariable("Recommendation").getMembership("sell"));
-		labelHold.setText("Hold: " + Fuzzy.fis.getVariable("Recommendation").getMembership("hold"));
+		labelStrongBuy.setText("Strong Buy: " + String.format("%2f", Fuzzy.fis.getVariable("Recommendation").getMembership("strong_buy")));
+		labelBuy.setText("Buy: " + String.format("%2f", Fuzzy.fis.getVariable("Recommendation").getMembership("buy")));
+		labelStrongSell.setText("Strong Sell: " + String.format("%2f", Fuzzy.fis.getVariable("Recommendation").getMembership("strong_sell")));
+		labelSell.setText("Sell: " + String.format("%2f", Fuzzy.fis.getVariable("Recommendation").getMembership("sell")));
+		labelHold.setText("Hold: " + String.format("%2f", Fuzzy.fis.getVariable("Recommendation").getMembership("hold")));
 	}
 }

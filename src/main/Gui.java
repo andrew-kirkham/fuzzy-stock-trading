@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Gui {
 
@@ -18,7 +19,13 @@ public class Gui {
 	private JTextField fieldStockSymbol;
 	private JTextField fieldExpertOpinion;
 	private JTextArea textArea;
-
+	
+	private JLabel labelBuy;
+	private JLabel labelSell;
+	private JLabel labelStrongBuy;
+	private JLabel labelStrongSell;
+	private JLabel labelHold;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -71,6 +78,7 @@ public class Gui {
 					
 					Fuzzy.fis.evaluate();
 					setTextArea(s);
+					setRecommendationArea();
 					
 				}catch (Exception ex){
 					JOptionPane.showMessageDialog(null, "Error fetching information");
@@ -81,15 +89,17 @@ public class Gui {
 		frame.getContentPane().add(btnStockSymbol);
 		
 		JLabel labelStockSymbol = new JLabel("Enter Stock Symbol (GOOG, YHOO)");
-		labelStockSymbol.setBounds(10, 20, 202, 14);
+		labelStockSymbol.setFont(new Font("Tahoma", Font.BOLD, 12));
+		labelStockSymbol.setBounds(10, 20, 224, 14);
 		frame.getContentPane().add(labelStockSymbol);
 		
 		JLabel labelExpertOpinion = new JLabel("Override Expert Opinion");
-		labelExpertOpinion.setBounds(10, 137, 144, 14);
+		labelExpertOpinion.setFont(new Font("Tahoma", Font.BOLD, 12));
+		labelExpertOpinion.setBounds(10, 206, 183, 14);
 		frame.getContentPane().add(labelExpertOpinion);
 		
 		fieldExpertOpinion = new JTextField();
-		fieldExpertOpinion.setBounds(10, 162, 86, 20);
+		fieldExpertOpinion.setBounds(10, 231, 86, 20);
 		frame.getContentPane().add(fieldExpertOpinion);
 		fieldExpertOpinion.setColumns(10);
 		
@@ -123,13 +133,39 @@ public class Gui {
 					}
 					Fuzzy.fis.setVariable("ExpertOpinion", input);
 					Fuzzy.fis.evaluate();
+					setRecommendationArea();
 				} catch(Exception ex){
 					JOptionPane.showMessageDialog(null, "Something has gone wrong!");
 				}
 			}
 		});
-		btnExpertOpinion.setBounds(104, 161, 89, 23);
+		btnExpertOpinion.setBounds(104, 230, 89, 23);
 		frame.getContentPane().add(btnExpertOpinion);
+		
+		JLabel lblRecommendation = new JLabel("Recommendation");
+		lblRecommendation.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblRecommendation.setBounds(10, 123, 119, 14);
+		frame.getContentPane().add(lblRecommendation);
+		
+		labelStrongBuy = new JLabel("Strong Buy");
+		labelStrongBuy.setBounds(10, 141, 86, 14);
+		frame.getContentPane().add(labelStrongBuy);
+		
+		labelBuy = new JLabel("Buy");
+		labelBuy.setBounds(10, 164, 46, 14);
+		frame.getContentPane().add(labelBuy);
+		
+		labelStrongSell = new JLabel("Strong Sell");
+		labelStrongSell.setBounds(104, 141, 85, 14);
+		frame.getContentPane().add(labelStrongSell);
+		
+		labelSell = new JLabel("Sell");
+		labelSell.setBounds(104, 164, 46, 14);
+		frame.getContentPane().add(labelSell);
+		
+		labelHold = new JLabel("Hold");
+		labelHold.setBounds(188, 141, 46, 14);
+		frame.getContentPane().add(labelHold);
 	}
 	
 	public void setTextArea(Stock s){
@@ -142,5 +178,13 @@ public class Gui {
 		textArea.append("\n50 Day Moving Avg: " + s.getMovingav50day());
 		textArea.append("\n\nPrice per Earnings: " + s.getPe());
 		textArea.append("\nEarnings per Share: " + s.getEps());
+	}
+	
+	public void setRecommendationArea(){
+		labelStrongBuy.setText("Strong Buy: " + Fuzzy.fis.getVariable("Recommendation").getMembership("strong_buy"));
+		labelBuy.setText("Buy: " + Fuzzy.fis.getVariable("Recommendation").getMembership("buy"));
+		labelStrongSell.setText("Strong Sell: " + Fuzzy.fis.getVariable("Recommendation").getMembership("strong_sell"));
+		labelSell.setText("Sell: " + Fuzzy.fis.getVariable("Recommendation").getMembership("sell"));
+		labelHold.setText("Hold: " + Fuzzy.fis.getVariable("Recommendation").getMembership("hold"));
 	}
 }

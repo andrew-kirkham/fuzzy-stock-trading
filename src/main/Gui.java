@@ -132,7 +132,8 @@ public class Gui {
 		frame.getContentPane().add(btnExpertOpinion);
 	}
 	public void setTextArea(Stock s){
-		textArea.append("Stock Symbol: " + s.getSymbol());
+		textArea.append("Name: " + s.getName());
+		textArea.append("\nStock Symbol: " + s.getSymbol());
 		textArea.append("\nCurrent Price: " + s.getPrice());
 		textArea.append("\nDay High: " + s.getDayhigh());
 		textArea.append("\nDay Low: " + s.getDaylow());

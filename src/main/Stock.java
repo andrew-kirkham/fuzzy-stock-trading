@@ -13,9 +13,10 @@ public class Stock {
 	private double dayhigh;
 	private double movingav50day;
 	private double expertOpPEG;
+	private String name;
 	
 	public Stock(String symbol, double price, int volume, double pe, double eps, double week52low,      
-					double week52high, double daylow, double dayhigh, double expertOpPEG, double movingav50day) {	
+					double week52high, double daylow, double dayhigh, double expertOpPEG, String name, double movingav50day) {	
 		this.symbol = symbol; 
 		this.price = price;	
 		this.volume = volume; 
@@ -26,6 +27,7 @@ public class Stock {
 		this.daylow = daylow; 
 		this.dayhigh = dayhigh; 
 		this.movingav50day = movingav50day; 
+		this.name = name;
 		this.expertOpPEG = expertOpPEG;
 	} 
 	
@@ -72,4 +74,8 @@ public class Stock {
 	public double getEOPEG() { 
 		return this.expertOpPEG;
 	} 
+	
+	public String getName(){
+		return this.name;
+	}
 }

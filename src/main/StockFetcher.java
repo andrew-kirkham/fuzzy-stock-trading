@@ -7,7 +7,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 public class StockFetcher {  
 	
 	/*
@@ -28,11 +27,12 @@ public class StockFetcher {
 		double dayhigh = 0.0;
 		double expertOpPEG = 0.0;
 		double movingav50day = 0.0;
+		String name = "";
 	
 		try { 
 			
 			// Retrieve CSV File
-			URL yahoo = new URL("http://finance.yahoo.com/d/quotes.csv?s="+ symbol + "&f=l1v0r0e0j5k4g0h0r5m3"); //&f=l1vr2ejkghm3j3
+			URL yahoo = new URL("http://finance.yahoo.com/d/quotes.csv?s="+ symbol + "&f=l1v0r0e0j5k4g0h0r5n0m3"); //&f=l1vr2ejkghm3j3
 			URLConnection connection = yahoo.openConnection(); 
 			InputStreamReader is = new InputStreamReader(connection.getInputStream());
 			BufferedReader br = new BufferedReader(is);  
@@ -53,7 +53,8 @@ public class StockFetcher {
 			daylow = sh.handleDouble(stockinfo[6]);
 			dayhigh = sh.handleDouble(stockinfo[7]);
 			expertOpPEG = sh.handleDouble(stockinfo[8]);
-			movingav50day = sh.handleDouble(stockinfo[9]);
+			name = stockinfo[9];
+			movingav50day = sh.handleDouble(stockinfo[10]);
 			
 		} catch (IOException e) {
 			Logger log = Logger.getLogger(StockFetcher.class.getName()); 
@@ -61,7 +62,7 @@ public class StockFetcher {
 			return null;
 		}
 		
-		return new Stock(sym, price, volume, pe, eps, week52low, week52high, daylow, dayhigh, expertOpPEG, movingav50day);
+		return new Stock(sym, price, volume, pe, eps, week52low, week52high, daylow, dayhigh, expertOpPEG, name, movingav50day);
 		
 	}
 }

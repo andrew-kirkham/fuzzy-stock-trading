@@ -17,8 +17,11 @@ public class Main {
 		Fuzzy.fis.getVariable("Recommendation").chartDefuzzifier(false);
 		Fuzzy.fis.chart();
 		
-		double r = Fuzzy.fis.getVariable("Recommendation").defuzzify();
-		JOptionPane.showMessageDialog(null, "Your recommendation value is " + r);
+		double rec = Fuzzy.fis.getVariable("Recommendation").defuzzify();
+		String msg = String.format("%s: Current Price: %s\n", s.getSymbol(), s.getPrice());
+		msg = String.format("%sRecommendation Value is: %f", msg, rec);
+		
+		JOptionPane.showMessageDialog(null, msg);
 		System.exit(0);
 	}
 }
